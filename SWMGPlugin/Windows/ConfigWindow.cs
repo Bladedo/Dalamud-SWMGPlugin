@@ -1,16 +1,16 @@
-﻿using System;
+using System;
 using System.Numerics;
 using Dalamud.Interface.Windowing;
 using ImGuiNET;
 
-namespace SamplePlugin.Windows;
+namespace SWMGPlugin.Windows;
 
 public class ConfigWindow : Window, IDisposable
 {
     private Configuration Configuration;
 
     public ConfigWindow(Plugin plugin) : base(
-        "A Wonderful Configuration Window",
+        "Don't blast out your ears",
         ImGuiWindowFlags.NoResize | ImGuiWindowFlags.NoCollapse | ImGuiWindowFlags.NoScrollbar |
         ImGuiWindowFlags.NoScrollWithMouse)
     {
@@ -25,10 +25,10 @@ public class ConfigWindow : Window, IDisposable
     public override void Draw()
     {
         // can't ref a property, so use a local copy
-        var configValue = this.Configuration.SomePropertyToBeSavedAndWithADefault;
-        if (ImGui.Checkbox("Random Config Bool", ref configValue))
+        var configValue = this.Configuration.Volume;
+        if (ImGui.SliderFloat("Volume", ref configValue, 0f, 1f))
         {
-            this.Configuration.SomePropertyToBeSavedAndWithADefault = configValue;
+            this.Configuration.Volume = configValue;
             // can save immediately on change, if you don't want to provide a "Save and Close" button
             this.Configuration.Save();
         }
