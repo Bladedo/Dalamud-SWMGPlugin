@@ -1,6 +1,8 @@
 # ShadowWizardMoneyGang
 
-Based on the plugin example and some code I found. Adds the shadow wizard money gang meme sound to all LBs
+Based on the plugin example and some code I found. Adds the shadow wizard money gang meme sound to all LBs. 
+
+There are volume settings in the config of the plugin.
 
 ## Credits to the following people/sources/etc.:
 
