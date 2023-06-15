@@ -1,0 +1,23 @@
+[
+    {
+      "Author": "BZ",
+      "Name": "Shadow Wizard Money Gang Plugin",
+      "Description": "Adds Shadow wizard money gang sound file to LB",
+      "Punchline": "We love casting spells",
+      "InternalName": "SWMGPlugin",
+      "AssemblyVersion": "0.0.0.1",
+      "TestingAssemblyVersion": "0.0.0.1",
+      "RepoUrl": "https://github.com/Bladedo/Dalamud-SWMGPlugin",
+      "ApplicableVersion": "any",
+      "DalamudApiLevel": 8,
+      "IsHide": "False",
+      "IsTestingExclusive": "False",
+      "DownloadCount": 0,
+      "LastUpdate": 0,
+      "LoadPriority": 69420,
+      "LoadRequiredState": 2,
+      "LoadSync": true,
+      "DownloadLinkInstall": "https://github.com/Bladedo/Dalamud-SWMGPlugin/releases/download/0.0.0.1/swmgplugin.zip",
+      "IconUrl": "https://raw.githubusercontent.com/Bladedo/Dalamud-SWMGPlugin/master/Data/swmg.png"
+    }
+  ]
