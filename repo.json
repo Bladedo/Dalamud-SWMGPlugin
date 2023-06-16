@@ -5,8 +5,8 @@
       "Description": "Adds Shadow wizard money gang sound file to LB",
       "Punchline": "We love casting spells",
       "InternalName": "SWMGPlugin",
-      "AssemblyVersion": "0.0.0.1",
-      "TestingAssemblyVersion": "0.0.0.1",
+      "AssemblyVersion": "0.0.0.2",
+      "TestingAssemblyVersion": "0.0.0.2",
       "RepoUrl": "https://github.com/Bladedo/Dalamud-SWMGPlugin",
       "ApplicableVersion": "any",
       "DalamudApiLevel": 8,
@@ -14,10 +14,11 @@
       "IsTestingExclusive": "False",
       "DownloadCount": 0,
       "LastUpdate": 0,
-      "LoadPriority": 69420,
-      "LoadRequiredState": 2,
+      "LoadPriority": 0,
+      "LoadRequiredState": 0,
       "LoadSync": true,
-      "DownloadLinkInstall": "https://github.com/Bladedo/Dalamud-SWMGPlugin/releases/download/0.0.0.1/swmgplugin.zip",
+      "DownloadLinkInstall": "https://github.com/Bladedo/Dalamud-SWMGPlugin/releases/download/0.0.0.2/swmgplugin.zip",
+      "DownloadLinkUpdate": "https://github.com/Bladedo/Dalamud-SWMGPlugin/releases/download/0.0.0.2/swmgplugin.zip",
       "IconUrl": "https://raw.githubusercontent.com/Bladedo/Dalamud-SWMGPlugin/master/Data/swmg.png"
     }
   ]

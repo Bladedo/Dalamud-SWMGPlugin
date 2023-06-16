@@ -22,6 +22,8 @@ namespace SWMGPlugin
         private ConfigWindow ConfigWindow { get; init; }
         private MainWindow MainWindow { get; init; }
 
+        private SWMG SWMG { get; set; }
+
         public Plugin(
             [RequiredVersion("1.0")] DalamudPluginInterface pluginInterface,
             [RequiredVersion("1.0")] CommandManager commandManager)
@@ -47,8 +49,8 @@ namespace SWMGPlugin
             PluginInterface.UiBuilder.Draw += DrawUI;
             PluginInterface.UiBuilder.OpenConfigUi += DrawConfigUI;
 
-            var swmgModule = new SWMG();
-            swmgModule.OnEnable();
+            SWMG = new SWMG();
+            SWMG.OnEnable();
         }
 
         public void Dispose()
@@ -57,6 +59,7 @@ namespace SWMGPlugin
             AudioHelper.Teardown();
             ConfigWindow.Dispose();
             MainWindow.Dispose();
+            SWMG.OnDisable();
         }
 
         private void OnCommand(string command, string args)
