@@ -12,15 +12,16 @@ namespace SWMGPlugin
     {
         private CachedSound swmg;
 
-        private delegate void DOnActionUsed(
-            uint source,
-            Character* character,
-            IntPtr position,
-            IntPtr fxHeader,
-            IntPtr fxArray,
-            IntPtr fxTrail);
+        private delegate void OnActionUsedDelegate(
+            uint sourceId, 
+            Character* sourceCharacter, 
+            IntPtr pos, 
+            IntPtr effectHeader,
+            IntPtr effectArray,
+            IntPtr effectTrail
+            );
 
-        private Hook<DOnActionUsed> actionUsedHook;
+        private Hook<OnActionUsedDelegate> actionUsedHook;
 
         private ExcelSheet<Action> action;
 
@@ -28,23 +29,23 @@ namespace SWMGPlugin
         {
             swmg = AudioHelper.Instance.CacheFromData("swmg.wav");
 
-            var actUsedSig = Services.SigScanner.ScanText("40 55 53 57 41 54 41 55 41 56 41 57 48 8D AC 24 ?? ?? ?? ?? 48 81 EC ?? ?? ?? ?? 48 8B 05 ?? ?? ?? ?? 48 33 C4 48 89 45 70");
-            actionUsedHook = Hook<DOnActionUsed>.FromAddress(actUsedSig, OnActionUsedDetour, false);
+            string actUsedSig = "40 55 53 57 41 54 41 55 41 56 41 57 48 8D AC 24 ?? ?? ?? ?? 48 81 EC ?? ?? ?? ?? 48 8B 05 ?? ?? ?? ?? 48 33 C4 48 89 45 70";
+            actionUsedHook = Services.GameInteropProvider.HookFromSignature<OnActionUsedDelegate>(actUsedSig, OnActionUsed);
 
             action = Services.DataManager.GetExcelSheet<Action>()!;
         }
 
-        private void OnActionUsedDetour(
-            uint source,
-            Character* character,
-            IntPtr position,
-            IntPtr fxHeader,
-            IntPtr fxArray,
-            IntPtr fxTrail)
+        private void OnActionUsed(
+            uint sourceId,
+            Character* sourceCharacter,
+            IntPtr pos,
+            IntPtr effectHeader,
+            IntPtr effectArray,
+            IntPtr effectTrail)
         {
-            actionUsedHook.Original(source, character, position, fxHeader, fxArray, fxTrail);
+            actionUsedHook.Original(sourceId, sourceCharacter, pos, effectHeader, effectArray, effectTrail);
 
-            var row = action.GetRow((uint)Marshal.ReadInt32(fxHeader, 8));
+            var row = action.GetRow((uint)Marshal.ReadInt32(effectHeader, 8));
             if (row == null)
             {
                 return;

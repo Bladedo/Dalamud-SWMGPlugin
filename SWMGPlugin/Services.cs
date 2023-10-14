@@ -1,8 +1,6 @@
-using Dalamud.Game.ClientState;
-using Dalamud.Game.Gui;
 using Dalamud.Game;
 using Dalamud.IoC;
-using Dalamud.Data;
+using Dalamud.Plugin.Services;
 
 namespace SWMGPlugin
 {
@@ -10,9 +8,12 @@ namespace SWMGPlugin
     {
 
         [PluginService]
-        public static SigScanner SigScanner { get; set; }
+        public static ISigScanner SigScanner { get; set; }
 
         [PluginService]
-        public static DataManager DataManager { get; set; }
+        public static IDataManager DataManager { get; set; }
+
+        [PluginService]
+        public static IGameInteropProvider GameInteropProvider { get; set; }        
     }
 }

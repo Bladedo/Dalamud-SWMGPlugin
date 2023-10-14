@@ -1,12 +1,10 @@
-using Dalamud.Game.Command;
 using Dalamud.IoC;
 using Dalamud.Plugin;
 using System.IO;
 using Dalamud.Interface.Windowing;
 using SWMGPlugin.Windows;
-using System;
-using System.Runtime.Remoting;
 using SWMGPlugin.Helpers.AudioHelper;
+using Dalamud.Plugin.Services;
 
 namespace SWMGPlugin
 {
@@ -15,7 +13,7 @@ namespace SWMGPlugin
         public string Name => "SWMG Plugin";
 
         public static DalamudPluginInterface PluginInterface { get; private set; }
-        private CommandManager CommandManager { get; init; }
+        private ICommandManager CommandManager { get; init; }
         public Configuration Configuration { get; init; }
         public WindowSystem WindowSystem = new("SWMGPlugin");
 
@@ -26,7 +24,7 @@ namespace SWMGPlugin
 
         public Plugin(
             [RequiredVersion("1.0")] DalamudPluginInterface pluginInterface,
-            [RequiredVersion("1.0")] CommandManager commandManager)
+            [RequiredVersion("1.0")] ICommandManager commandManager)
         {
             pluginInterface.Create<Services>();
 

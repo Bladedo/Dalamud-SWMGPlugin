@@ -1,5 +1,6 @@
 using System;
 using System.Numerics;
+using Dalamud.Interface.Internal;
 using Dalamud.Interface.Windowing;
 using ImGuiNET;
 using ImGuiScene;
@@ -8,10 +9,10 @@ namespace SWMGPlugin.Windows;
 
 public class MainWindow : Window, IDisposable
 {
-    private TextureWrap swmgImage;
+    private IDalamudTextureWrap swmgImage;
     private Plugin plugin;
 
-    public MainWindow(Plugin plugin, TextureWrap swmgImage) : base(
+    public MainWindow(Plugin plugin, IDalamudTextureWrap swmgImage) : base(
         "My Amazing Window", ImGuiWindowFlags.NoScrollbar | ImGuiWindowFlags.NoScrollWithMouse)
     {
         this.SizeConstraints = new WindowSizeConstraints
