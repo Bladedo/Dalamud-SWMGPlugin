@@ -7,7 +7,7 @@ namespace SWMGPlugin.Windows;
 
 public class ConfigWindow : Window, IDisposable
 {
-    private Configuration Configuration;
+    private Configuration configuration;
 
     public ConfigWindow(Plugin plugin) : base(
         "Don't blast out your ears",
@@ -17,7 +17,7 @@ public class ConfigWindow : Window, IDisposable
         this.Size = new Vector2(232, 75);
         this.SizeCondition = ImGuiCond.Always;
 
-        this.Configuration = plugin.Configuration;
+        this.configuration = plugin.Configuration;
     }
 
     public void Dispose() { }
@@ -25,12 +25,12 @@ public class ConfigWindow : Window, IDisposable
     public override void Draw()
     {
         // can't ref a property, so use a local copy
-        var configValue = this.Configuration.Volume;
+        var configValue = this.configuration.Volume;
         if (ImGui.SliderFloat("Volume", ref configValue, 0f, 1f))
         {
-            this.Configuration.Volume = configValue;
+            this.configuration.Volume = configValue;
             // can save immediately on change, if you don't want to provide a "Save and Close" button
-            this.Configuration.Save();
+            this.configuration.Save();
         }
     }
 }

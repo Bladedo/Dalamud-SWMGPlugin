@@ -11,18 +11,9 @@ namespace SWMGPlugin
 
         public float Volume { get; set; } = 0.1f;
 
-        // the below exist just to make saving less cumbersome
-        [NonSerialized]
-        private DalamudPluginInterface? PluginInterface;
-
-        public void Initialize(DalamudPluginInterface pluginInterface)
-        {
-            this.PluginInterface = pluginInterface;
-        }
-
         public void Save()
         {
-            this.PluginInterface!.SavePluginConfig(this);
+            Plugin.PluginInterface.SavePluginConfig(this);
         }
     }
 }

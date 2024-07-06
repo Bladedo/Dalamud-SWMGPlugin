@@ -12,35 +12,35 @@ namespace SWMGPlugin
     {
         public string Name => "SWMG Plugin";
 
-        public static DalamudPluginInterface PluginInterface { get; private set; }
-        private ICommandManager CommandManager { get; init; }
+        [PluginService] 
+        public static IDalamudPluginInterface PluginInterface { get; private set; } = null!;
+
+        [PluginService] 
+        internal static ICommandManager CommandManager { get; private set; } = null!;
+
+        [PluginService] 
+        internal static ITextureProvider TextureProvider { get; private set; } = null!;
+
         public Configuration Configuration { get; init; }
         public WindowSystem WindowSystem = new("SWMGPlugin");
 
         private ConfigWindow ConfigWindow { get; init; }
+
         private MainWindow MainWindow { get; init; }
 
-        private SWMG SWMG { get; set; }
+    private SWMG SWMG { get; set; }
 
-        public Plugin(
-            [RequiredVersion("1.0")] DalamudPluginInterface pluginInterface,
-            [RequiredVersion("1.0")] ICommandManager commandManager)
+        public Plugin()
         {
-            pluginInterface.Create<Services>();
-
-            PluginInterface = pluginInterface;
-            this.CommandManager = commandManager;
-
-            this.Configuration = PluginInterface.GetPluginConfig() as Configuration ?? new Configuration();
-            this.Configuration.Initialize(PluginInterface);
+            PluginInterface.Create<Services>();
+            Configuration = PluginInterface.GetPluginConfig() as Configuration ?? new Configuration();            
 
             // you might normally want to embed resources and load them from the manifest stream
             var imagePath = Path.Combine(PluginInterface.AssemblyLocation.Directory?.FullName!, "swmg.png");
-            var swmgImage = PluginInterface.UiBuilder.LoadImage(imagePath);
 
             ConfigWindow = new ConfigWindow(this);
-            MainWindow = new MainWindow(this, swmgImage);
-            
+            MainWindow = new MainWindow(this, imagePath);
+
             WindowSystem.AddWindow(ConfigWindow);
             WindowSystem.AddWindow(MainWindow);
 
