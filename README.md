@@ -20,4 +20,4 @@ https://github.com/goatcorp
 https://github.com/goatcorp/SamplePlugin
 
 ### Etc.
-My rusty ass dev "skills"
+My rusty ass 
